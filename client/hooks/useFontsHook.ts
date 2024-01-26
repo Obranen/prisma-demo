@@ -15,5 +15,5 @@ export const useFontsHook = () => {
     }
   }, [fontsLoaded, fontError])
 
-  return {fontsLoaded, fontError, onLayoutRootView}
+  return { fontsLoaded, fontError, onLayoutRootView }
 }
