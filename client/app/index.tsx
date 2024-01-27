@@ -1,6 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient'
 import { useRouter } from 'expo-router'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { useColorScheme } from 'nativewind'
+import { Switch, Text, TouchableOpacity, View } from 'react-native'
 import Animated, { FadeInDown } from 'react-native-reanimated'
 import {
   heightPercentageToDP as hp,
@@ -9,13 +10,28 @@ import {
 
 export default function MainScreen() {
   const router = useRouter()
-
+  const { colorScheme, setColorScheme } = useColorScheme()
+  
   return (
-    <View className='flex-1 justify-end'>
-      <Image
+    <View className='flex-1 justify-end dark:bg-slate-800'>
+      <Switch
+        value={colorScheme === 'dark'}
+        onChange={() =>
+          colorScheme === 'dark'
+            ? setColorScheme('light')
+            : setColorScheme('dark')
+        }
+      />
+      <Text className='dark:text-white'>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem in
+        reprehenderit sunt quidem saepe corporis porro illo doloremque
+        repudiandae, tenetur rem omnis facilis ab rerum. Natus, accusantium.
+        Quos, maiores illum?
+      </Text>
+      {/* <Image
         className='h-full w-full absolute'
         source={require('../assets/images/workout-mobile.webp')}
-      />
+      /> */}
       <LinearGradient
         colors={['transparent', '#3f3f46']}
         style={{ width: wp(100), height: hp(60) }}
@@ -27,15 +43,9 @@ export default function MainScreen() {
           entering={FadeInDown.delay(400).springify()}
           className='flex items-center'
         >
-          <Text
-            style={{ fontSize: hp(5) }}
-            className='text-white font-bold'
-          >
+          <Text style={{ fontSize: hp(5) }} className='text-white font-bold'>
             Street{' '}
-            <Text
-              style={{ fontSize: hp(5) }}
-              className='text-pink-700'
-            >
+            <Text style={{ fontSize: hp(5) }} className='text-pink-700'>
               Workout
             </Text>
           </Text>
