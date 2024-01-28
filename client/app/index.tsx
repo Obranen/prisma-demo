@@ -9,9 +9,9 @@ import {
 
 export default function MainScreen() {
   const router = useRouter()
-
+  
   return (
-    <View className='flex-1 justify-end'>
+    <View className='flex-1 justify-end' >
       <Image
         className='h-full w-full absolute'
         source={require('../assets/images/workout-mobile.webp')}
