@@ -6,7 +6,7 @@ import { DrawerActions } from '@react-navigation/native'
 import { useNavigation } from 'expo-router/src/useNavigation'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import ToogleTheme from './ToogleTheme'
+import ToogleTheme from './ToggleTheme'
 
 export default function DrawerContent(props: any) {
   const navigation = useNavigation()
@@ -15,7 +15,7 @@ export default function DrawerContent(props: any) {
   }
 
   return (
-    <View className='flex-1 dark:bg-myDefaultDark'>
+    <View className='flex-1 dark:bg-black'>
       <DrawerContentScrollView {...props}>
         <ToogleTheme />
         <DrawerItemList {...props} />
@@ -27,7 +27,7 @@ export default function DrawerContent(props: any) {
       >
         <Text
           style={{ fontSize: hp(2) }}
-          className='font-bold px-6 py-2 dark:text-myDefaultLight'
+          className='font-bold px-6 py-2'
         >
           Logout
         </Text>
