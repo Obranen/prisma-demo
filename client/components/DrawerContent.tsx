@@ -15,7 +15,7 @@ export default function DrawerContent(props: any) {
   }
 
   return (
-    <View className='flex-1 dark:bg-black'>
+    <View className='flex-1 dark:bg-myDefaultDark'>
       <DrawerContentScrollView {...props}>
         <ToogleTheme />
         <DrawerItemList {...props} />
@@ -27,7 +27,7 @@ export default function DrawerContent(props: any) {
       >
         <Text
           style={{ fontSize: hp(2) }}
-          className='text-black font-bold px-6 py-2 dark:text-white'
+          className='font-bold px-6 py-2 dark:text-myDefaultLight'
         >
           Logout
         </Text>

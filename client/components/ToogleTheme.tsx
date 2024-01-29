@@ -1,18 +1,16 @@
+import { StatusBar } from 'expo-status-bar'
 import { useColorScheme } from 'nativewind'
-import { Switch, View } from 'react-native'
+import { Switch, View, Text } from 'react-native'
 
 export default function ToogleTheme() {
-  const { colorScheme, setColorScheme } = useColorScheme()
+  const { colorScheme, toggleColorScheme } = useColorScheme()
   
   return (
     <View className='flex-1 justify-center items-center'>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <Switch
         value={colorScheme === 'dark'}
-        onChange={() =>
-          colorScheme === 'dark'
-            ? setColorScheme('light')
-            : setColorScheme('dark')
-        }
+        onChange={toggleColorScheme}
       />
     </View>
   )
