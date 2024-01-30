@@ -1,18 +1,22 @@
 import { StatusBar } from 'expo-status-bar'
 import { useColorScheme } from 'nativewind'
-import { Switch, View, Text } from 'react-native'
+import { Switch, View } from 'react-native'
 
 export default function ToggleTheme() {
   const { colorScheme, toggleColorScheme } = useColorScheme()
 
   return (
-    <View className='flex-1 justify-center items-center bg-blend-lighten'>
-      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+    <View className='flex-1 justify-center items-center'>
+      <StatusBar
+        backgroundColor={colorScheme === 'dark' ? '#000' : '#fff'}
+        style={colorScheme === 'dark' ? 'light' : 'dark'}
+      />
       <Switch
         value={colorScheme === 'dark'}
         onChange={toggleColorScheme}
+        trackColor={{ false: '#818181', true: '#818181' }}
+        thumbColor={colorScheme === 'dark' ? '#fff' : '#000'}
       />
-      <Text className='dark: text-blue'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nostrum est esse neque sunt dolorem minus reprehenderit quasi saepe, deserunt nisi et quos laborum voluptate ad repellendus aperiam, accusantium quod?</Text>
     </View>
   )
 }
