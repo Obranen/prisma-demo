@@ -1,8 +1,8 @@
 import {
   AntDesign,
   Entypo,
-  FontAwesome5,
-  MaterialIcons,
+  MaterialCommunityIcons,
+  MaterialIcons
 } from '@expo/vector-icons'
 import { Drawer } from 'expo-router/drawer'
 import { useColorScheme } from 'nativewind'
@@ -46,12 +46,12 @@ export default function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name='about'
+        name='carousel'
         options={{
-          drawerLabel: 'About',
-          title: 'About',
+          drawerLabel: 'Carousel',
+          title: 'Carousel',
           drawerIcon: ({ size, color }) => {
-            return <FontAwesome5 name='info-circle' size={size} color={color} />
+            return <MaterialCommunityIcons name='view-carousel-outline' size={size} color={color} />
           },
         }}
       />
