@@ -36,7 +36,7 @@ export default function IndexScreen() {
         </Animated.View>
         <Animated.View entering={FadeInDown.delay(600).springify()}>
           <TouchableOpacity
-            onPress={() => router.push('/about')}
+            onPress={() => router.push('/carousel')}
             style={{ height: hp(5.5), width: wp(70) }}
             className='bg-rose-500 flex items-center justify-center mx-auto rounded-full border-[2px] border-neutral-200'
           >

@@ -1,6 +1,6 @@
 import {
-  AntDesign,
   Entypo,
+  FontAwesome,
   MaterialCommunityIcons,
   MaterialIcons
 } from '@expo/vector-icons'
@@ -56,12 +56,12 @@ export default function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name='contact'
+        name='todo'
         options={{
-          drawerLabel: 'Contact',
-          title: 'Contact',
+          drawerLabel: 'Todo',
+          title: 'Todo',
           drawerIcon: ({ size, color }) => {
-            return <AntDesign name='contacts' size={size} color={color} />
+            return <FontAwesome name='list-alt' size={size} color={color} />
           },
         }}
       />
