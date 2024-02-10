@@ -1,14 +1,16 @@
 import { Octicons } from '@expo/vector-icons'
 import { useState } from 'react'
-import { Text, TextInput, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
+import { TextInput } from 'react-native-paper'
 
 export default function TodoScreen() {
-  const [todoText, setTodoText] = useState('')
+  // const [todoText, setTodoText] = useState('')
+  const [text, setText] = useState('')
 
   // console.log('todoText', todoText)
 
@@ -29,28 +31,45 @@ export default function TodoScreen() {
     <View className='flex-1 dark:bg-gray-800'>
       <Text
         style={{ fontSize: hp(3) }}
-        className='text-center font-bold dark:text-white p-2'
+        className='p-2 font-bold text-center dark:text-white'
       >
         Todo List
       </Text>
       <View
         style={{ height: hp(6), width: wp(80) }}
-        className='flex-row border-b-2 focus:border-red-600 mx-auto bg-white items-center rounded-md'
+        className='flex-row items-center mx-auto bg-white border-b-2 rounded-md focus:border-red-600'
       >
         <Octicons
-          style={{ paddingLeft: 8, paddingRight: 4,}}
+          style={{ paddingLeft: 8, paddingRight: 4 }}
           name='mail'
           size={hp(2.7)}
           color='grey'
         />
+
         <TextInput
+          mode='outlined'
+          label='Email'
+          value={text}
+          onChangeText={(text) => setText(text)}
+          outlineColor='red'
+          activeOutlineColor='blue'
+          className='text-red-500 placeholder:bg-slate-100 placeholder:text-red-400'
+          underlineColor='green'
+          selectionColor='yellow'
+          textColor='green'
+          // cursorColor='grey'
+          activeUnderlineColor='red'
+          
+        />
+        
+        {/* <TextInput
           onChangeText={setTodoText}
           value={todoText}
           placeholder='Email'
-          className='flex-1 text-gray-500 w-full font-medium h-full py-0'
+          className='flex-1 w-full h-full py-0 font-medium text-gray-500'
           style={{ fontSize: wp(4) }}
           placeholderTextColor='#adadad'
-        />
+        /> */}
       </View>
 
       <FlatList
@@ -58,7 +77,7 @@ export default function TodoScreen() {
         renderItem={({ item }) => (
           <View
             style={{ width: wp(80) }}
-            className='border-2 dark:border-white rounded-md mx-auto my-2 p-2'
+            className='p-2 mx-auto my-2 border-2 rounded-md dark:border-white'
           >
             <Text className='dark:text-white'>{item.title}</Text>
             <Text className='dark:text-white'>{item.description}</Text>
