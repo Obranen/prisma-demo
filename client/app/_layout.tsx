@@ -1,7 +1,6 @@
 import { SafeAreaView, Text, View } from 'react-native'
 import { useFontsHook } from '../hooks/useFontsHook'
 import DrawerNavigation from '../components/DrawerNavigation'
-import { PaperProvider } from 'react-native-paper'
 
 export default function RootLayout() {
   let { fontsLoaded, fontError, onLayoutRootView } = useFontsHook()
@@ -14,10 +13,8 @@ export default function RootLayout() {
     )
   }
   return (
-    <PaperProvider>
-      <SafeAreaView className='flex-1' onLayout={onLayoutRootView}>
-        <DrawerNavigation />
-      </SafeAreaView>
-    </PaperProvider>
+    <SafeAreaView className='flex-1' onLayout={onLayoutRootView}>
+      <DrawerNavigation />
+    </SafeAreaView>
   )
 }

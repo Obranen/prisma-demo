@@ -11,9 +11,9 @@ export default function IndexScreen() {
   const router = useRouter()
 
   return (
-    <View className='flex-1 justify-end'>
+    <View className='justify-end flex-1'>
       <Image
-        className='h-full w-full absolute'
+        className='absolute w-full h-full'
         source={require('../assets/images/workout-mobile.webp')}
       />
       <LinearGradient
@@ -27,7 +27,7 @@ export default function IndexScreen() {
           entering={FadeInDown.delay(400).springify()}
           className='flex items-center'
         >
-          <Text style={{ fontSize: hp(5) }} className='text-white font-bold'>
+          <Text style={{ fontSize: hp(5) }} className='font-bold text-white'>
             Street{' '}
             <Text style={{ fontSize: hp(5) }} className='text-pink-700'>
               Workout
@@ -42,7 +42,7 @@ export default function IndexScreen() {
           >
             <Text
               style={{ fontSize: hp(2.7) }}
-              className='text-white font-bold'
+              className='font-bold text-white'
             >
               Get Started
             </Text>
