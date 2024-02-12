@@ -1,86 +1,41 @@
-import { Octicons } from '@expo/vector-icons'
-import { useState } from 'react'
-import { Text, View } from 'react-native'
-import { FlatList } from 'react-native-gesture-handler'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import { TextInput } from 'react-native-paper'
+import { useQuery } from '@tanstack/react-query'
+import { FlatList, Text, View } from 'react-native'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
+import { getUsers } from '../fetch/users'
 
 export default function TodoScreen() {
-  // const [todoText, setTodoText] = useState('')
-  const [text, setText] = useState('')
+  const users = useQuery({
+    queryKey: ['users'],
+    queryFn: () => getUsers(),
+  })
 
-  // console.log('todoText', todoText)
+  if (users.isLoading) {
+    return (
+      <View className='flex-1'>
+        <Text>Loading...</Text>
+      </View>
+    )
+  }
 
-  const dataTodo = [
-    {
-      id: 1,
-      title: 'Купить',
-      description: 'Нужно что-то купить',
-    },
-    {
-      id: 2,
-      title: 'Нанять',
-      description: 'Нужно что-то нанять',
-    },
-  ]
+  if (users.error) {
+    return (
+      <View className='flex-1'>
+        <Text>Error... Пользователи не загружены</Text>
+      </View>
+    )
+  }
 
   return (
     <View className='flex-1 dark:bg-gray-800'>
-      <Text
-        style={{ fontSize: hp(3) }}
-        className='p-2 font-bold text-center dark:text-white'
-      >
-        Todo List
-      </Text>
-      <View
-        style={{ height: hp(6), width: wp(80) }}
-        className='flex-row items-center mx-auto bg-white border-b-2 rounded-md focus:border-red-600'
-      >
-        <Octicons
-          style={{ paddingLeft: 8, paddingRight: 4 }}
-          name='mail'
-          size={hp(2.7)}
-          color='grey'
-        />
-
-        <TextInput
-          mode='outlined'
-          label='Email'
-          value={text}
-          onChangeText={(text) => setText(text)}
-          outlineColor='red'
-          activeOutlineColor='blue'
-          className='text-red-500 placeholder:bg-slate-100 placeholder:text-red-400'
-          underlineColor='green'
-          selectionColor='yellow'
-          textColor='green'
-          // cursorColor='grey'
-          activeUnderlineColor='red'
-          
-        />
-        
-        {/* <TextInput
-          onChangeText={setTodoText}
-          value={todoText}
-          placeholder='Email'
-          className='flex-1 w-full h-full py-0 font-medium text-gray-500'
-          style={{ fontSize: wp(4) }}
-          placeholderTextColor='#adadad'
-        /> */}
-      </View>
-
       <FlatList
-        data={dataTodo}
+        data={users.data}
         renderItem={({ item }) => (
           <View
             style={{ width: wp(80) }}
             className='p-2 mx-auto my-2 border-2 rounded-md dark:border-white'
           >
-            <Text className='dark:text-white'>{item.title}</Text>
-            <Text className='dark:text-white'>{item.description}</Text>
+            <Text className='dark:text-white'>{item.name}</Text>
+            <Text className='dark:text-white'>{item.email}</Text>
           </View>
         )}
       />
