@@ -1,8 +1,8 @@
 import Router from 'express'
-import userRouter from './userRouter.js'
+import commentRouter from './commentRouter.js'
 
 const router = Router()
 
-router.use('/user', userRouter)
+router.use('/comment', commentRouter)
 
 export default router

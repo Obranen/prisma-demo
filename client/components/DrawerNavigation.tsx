@@ -56,10 +56,10 @@ export default function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name='todo'
+        name='comment'
         options={{
-          drawerLabel: 'Todo',
-          title: 'Todo',
+          drawerLabel: 'Comment',
+          title: 'Comment',
           drawerIcon: ({ size, color }) => {
             return <FontAwesome name='list-alt' size={size} color={color} />
           },
