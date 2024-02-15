@@ -1,5 +1,5 @@
 import { SafeAreaView, Text, View } from 'react-native'
-import DrawerNavigation from '../components/DrawerNavigation'
+import DrawerNavigation from '../components/DrawerNavigation/DrawerNavigation'
 import { useFontsHook } from '../hooks/useFontsHook'
 import { Provider } from '../lib/Provider'
 

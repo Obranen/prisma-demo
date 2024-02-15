@@ -7,11 +7,19 @@ const baseUrl =
     ? process.env.EXPO_PUBLIC_FETCH_MOBILE_URL
     : process.env.EXPO_PUBLIC_FETCH_WEB_URL
 
-export const getUsers = async () => {
+export const getComments = async () => {
   try {
     const response = await axios.get<IComment[]>(`${baseUrl}/api/comment`)
     return response.data
   } catch (error) {
     console.error(error)
+  }
+}
+
+export const createComment = async (data: IComment) => {
+  try {
+    await axios.post(`${baseUrl}/api/comment/create`, data)
+  } catch (e) {
+    console.log(e)
   }
 }

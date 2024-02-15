@@ -6,7 +6,7 @@ import {
 } from '@expo/vector-icons'
 import { Drawer } from 'expo-router/drawer'
 import { useColorScheme } from 'nativewind'
-import DrawerContent from '../components/DrawerContent'
+import DrawerContent from './DrawerContent/DrawerContent'
 
 export default function DrawerNavigation() {
   const { colorScheme } = useColorScheme()

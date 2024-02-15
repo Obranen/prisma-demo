@@ -16,7 +16,7 @@ export default function Logout() {
     >
       <Text
         style={{ fontSize: hp(2) }}
-        className='text-black font-bold px-6 py-2 dark:text-white'
+        className='px-6 py-2 font-bold text-black dark:text-white'
       >
         Logout
       </Text>

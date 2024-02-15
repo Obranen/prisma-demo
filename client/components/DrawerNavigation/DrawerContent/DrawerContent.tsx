@@ -3,8 +3,8 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer'
 import { View } from 'react-native'
-import ToogleTheme from './ToggleTheme'
-import Logout from './Logout'
+import ToogleTheme from './ToggleTheme/ToggleTheme'
+import Logout from './Logout/Logout'
 
 export default function DrawerContent(props: any) {
   return (

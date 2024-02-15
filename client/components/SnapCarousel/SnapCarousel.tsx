@@ -3,7 +3,7 @@ import {
   widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Carousel from 'react-native-snap-carousel'
-import CarouselImagesItem from './SnapCarouselItem'
+import CarouselImagesItem from './SnapCarouselItem/SnapCarouselItem'
 
 export default function SnapCarousel() {
   const images = [
@@ -15,7 +15,7 @@ export default function SnapCarousel() {
   ]
   
   return (
-    <View>
+    <View className='flex-1'>
       <Carousel 
         data={images}
         loop={true}
