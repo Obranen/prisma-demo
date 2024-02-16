@@ -5,12 +5,26 @@ import {
 } from 'react-native-responsive-screen'
 import { IComment } from '../../../interface/comment'
 import { View } from 'react-native'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { deleteComment } from '../../../fetch/comment'
 
 interface ICommentItem {
   comment: IComment
 }
 
 export default function CommentItem({ comment }: ICommentItem) {
+  const queryClient = useQueryClient()
+  
+  const deleteCommentMutation = useMutation({
+    mutationFn: deleteComment,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries()
+    }
+  })
+
+  console.log(comment.id);
+  
+
   var dateBeautiful = new Date(String(comment.created_at)).toLocaleString()
 
   const capitalizeFirstLetter = (str: string) => {
@@ -35,7 +49,7 @@ export default function CommentItem({ comment }: ICommentItem) {
             icon='delete'
             iconColor={MD3Colors.error50}
             size={20}
-            onPress={() => console.log('delete')}
+            onPress={() => deleteCommentMutation.mutate(comment.id)}
             className='p-0 m-0'
           />
         </View>
