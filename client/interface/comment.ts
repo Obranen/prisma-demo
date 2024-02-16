@@ -2,6 +2,6 @@ export interface IComment {
   id: string
   name: string
   description: string
-  createdDate?: string
-  updatedDate?: string
+  created_at?: string
+  updated_at?: string
 }

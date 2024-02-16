@@ -30,11 +30,10 @@ export default function Comment() {
   return (
     <View className='flex-1 dark:bg-gray-800'>
       <CommentCreate />
+      {comments.data?.length === 0 ? <Text className='font-bold text-center text-red-500'>Список пуст!</Text> : <></>}
       <FlatList
         data={comments.data}
-        renderItem={({ item }) => (
-          <CommentItem comment={item} />
-        )}
+        renderItem={({ item }) => <CommentItem comment={item} />}
       />
     </View>
   )

@@ -23,3 +23,20 @@ export const createComment = async (data: IComment) => {
     console.log(e)
   }
 }
+
+export const deleteComment = async (id: string) => {
+  try {
+    await axios.delete(`${baseUrl}/api/comment/${id}`)
+    return null
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const updateComment = async (data: IComment) => {
+  try {
+    await axios.put(`${baseUrl}/api/comment/${data.id}`, data)
+  } catch (e) {
+    console.log(e)
+  }
+}

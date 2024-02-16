@@ -10,8 +10,8 @@ import {
   useForm,
   useFormState,
 } from 'react-hook-form'
-import { IComment } from '../../../interface/comment'
 import { createComment } from '../../../fetch/comment'
+import { IComment } from '../../../interface/comment'
 
 export default function CommentCreate() {
   const queryClient = useQueryClient()
@@ -28,10 +28,11 @@ export default function CommentCreate() {
   const { errors } = useFormState({ control })
   const onSubmit: SubmitHandler<IComment> = (data) => {
     console.log(data)
+    const createDate = new Date(Date.now())
     createCommentMutation.mutate({
       id: data.id,
       name: data.name,
-      description: data.description,
+      description: data.description
     })
 
     resetField('name')
@@ -57,7 +58,7 @@ export default function CommentCreate() {
               label='Name'
               placeholder='Name...'
               right={<TextInput.Affix />}
-              style={{ width: wp('80%') }}
+              style={{ width: wp('90%') }}
               className='mx-auto'
               value={value}
               onChangeText={onChange}
@@ -81,7 +82,7 @@ export default function CommentCreate() {
               label='Description'
               placeholder='Description...'
               right={<TextInput.Affix />}
-              style={{ width: wp('80%') }}
+              style={{ width: wp('90%') }}
               className='mx-auto'
               value={value}
               onChangeText={onChange}
@@ -98,7 +99,7 @@ export default function CommentCreate() {
         icon='camera'
         mode='contained'
         onPress={handleSubmit(onSubmit)}
-        style={{ width: wp('80%') }}
+        style={{ width: wp('50%') }}
         className='mx-auto mt-[10px]'
       >
         <Text style={{ fontSize: hp(2) }} className='font-bold text-white'>
