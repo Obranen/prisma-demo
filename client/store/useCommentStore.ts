@@ -1,4 +1,4 @@
-// import {create} from 'zustand'
+import { create } from 'zustand'
 // import {IProductState} from '../interface/product'
 
 // interface IUseFilterProductStore {
@@ -19,3 +19,21 @@
 //     productsFilter: []
 //   })),
 // }))
+
+interface IUseCommentStore {
+  isCommentEdit: boolean
+  commentEdit: () => void
+  commentClear: () => void
+}
+
+export const useCommentStore = create<IUseCommentStore>((set) => ({
+  isCommentEdit: false,
+  commentEdit: () =>
+    set({
+      isCommentEdit: true,
+    }),
+  commentClear: () =>
+    set({
+      isCommentEdit: false,
+    }),
+}))

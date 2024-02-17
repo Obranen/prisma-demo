@@ -7,8 +7,9 @@ import {
 } from 'react-native-responsive-screen'
 import { useFirstLetterHook } from '../../../hooks/useFirstLetterHook'
 import { IComment } from '../../../interface/comment'
+import CommentClear from './CommentClear/CommentClear'
 import CommentDelete from './CommentDelete/CommentDelete'
-import CommentUpdate from './CommentUpdate/CommentUpdate'
+import CommentEdit from './CommentEdit/CommentEdit'
 
 interface ICommentItem {
   comment: IComment
@@ -29,7 +30,8 @@ export default function CommentItem({ comment }: ICommentItem) {
           {capitalizeFirstLetter(comment.name)}
         </Text>
         <View className='flex-row'>
-          <CommentUpdate />
+          <CommentEdit comment={comment} />
+          <CommentClear />
           <CommentDelete commentId={comment.id} />
         </View>
         <Text className='font-bold text-gray-400'>{commentDate}</Text>

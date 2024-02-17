@@ -10,13 +10,23 @@ import {
   useForm,
   useFormState,
 } from 'react-hook-form'
-import { commentCreate } from '../../../fetch/comment'
+import { commentCreate, commentUpdate } from '../../../fetch/comment'
 import { IComment } from '../../../interface/comment'
+import { useCommentStore } from '../../../store/useCommentStore'
 
 export default function CommentCreate() {
+  const isCommentEdit = useCommentStore((state) => state.isCommentEdit)
   const queryClient = useQueryClient()
-  const createCommentMutation = useMutation({
+
+  const commentCreateMutation = useMutation({
     mutationFn: commentCreate,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries()
+    },
+  })
+
+  const commentUpdateMutation = useMutation({
+    mutationFn: commentUpdate,
     onSuccess: async () => {
       await queryClient.invalidateQueries()
     },
@@ -26,11 +36,22 @@ export default function CommentCreate() {
     defaultValues: { name: '', description: '' },
   })
   const { errors } = useFormState({ control })
-  const onSubmit: SubmitHandler<IComment> = (data) => {
-    createCommentMutation.mutate({
+  const createPress: SubmitHandler<IComment> = (data) => {
+    commentCreateMutation.mutate({
       id: data.id,
       name: data.name,
-      description: data.description
+      description: data.description,
+    })
+
+    resetField('name')
+    resetField('description')
+  }
+
+  const updatePress: SubmitHandler<IComment> = (data) => {
+    commentUpdateMutation.mutate({
+      id: data.id,
+      name: data.name,
+      description: data.description,
     })
 
     resetField('name')
@@ -93,17 +114,31 @@ export default function CommentCreate() {
           </>
         )}
       />
-      <Button
-        icon='camera'
-        mode='contained'
-        onPress={handleSubmit(onSubmit)}
-        style={{ width: wp('50%') }}
-        className='mx-auto mt-[10px]'
-      >
-        <Text style={{ fontSize: hp(2) }} className='font-bold text-white'>
-          Добавить
-        </Text>
-      </Button>
+      {isCommentEdit ? (
+        <Button
+          icon='content-save'
+          mode='contained'
+          onPress={handleSubmit(updatePress)}
+          style={{ width: wp('60%') }}
+          className='mx-auto mt-[10px]'
+        >
+          <Text style={{ fontSize: hp(2) }} className='font-bold text-white'>
+            Сохранить
+          </Text>
+        </Button>
+      ) : (
+        <Button
+          icon='message-plus-outline'
+          mode='contained'
+          onPress={handleSubmit(createPress)}
+          style={{ width: wp('60%') }}
+          className='mx-auto mt-[10px]'
+        >
+          <Text style={{ fontSize: hp(2) }} className='font-bold text-white'>
+            Добавить
+          </Text>
+        </Button>
+      )}
       <Text
         style={{ fontSize: hp(2.2) }}
         className='text-center mt-[20px] mb-[6px] font-medium text-fuchsia-600'
