@@ -7,7 +7,7 @@ const baseUrl =
     ? process.env.EXPO_PUBLIC_FETCH_MOBILE_URL
     : process.env.EXPO_PUBLIC_FETCH_WEB_URL
 
-export const getComments = async () => {
+export const commentsGet = async () => {
   try {
     const response = await axios.get<IComment[]>(`${baseUrl}/api/comment`)
     return response.data
@@ -16,7 +16,7 @@ export const getComments = async () => {
   }
 }
 
-export const createComment = async (data: IComment) => {
+export const commentCreate = async (data: IComment) => {
   try {
     await axios.post(`${baseUrl}/api/comment/create`, data)
   } catch (e) {
@@ -24,7 +24,7 @@ export const createComment = async (data: IComment) => {
   }
 }
 
-export const deleteComment = async (id: string) => {
+export const commentDelete = async (id: string) => {
   try {
     await axios.delete(`${baseUrl}/api/comment/${id}`)
     return null
@@ -33,7 +33,7 @@ export const deleteComment = async (id: string) => {
   }
 }
 
-export const updateComment = async (data: IComment) => {
+export const commentUpdate = async (data: IComment) => {
   try {
     await axios.put(`${baseUrl}/api/comment/update/${data.id}`, data)
   } catch (e) {

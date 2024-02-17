@@ -10,13 +10,13 @@ import {
   useForm,
   useFormState,
 } from 'react-hook-form'
-import { createComment } from '../../../fetch/comment'
+import { commentCreate } from '../../../fetch/comment'
 import { IComment } from '../../../interface/comment'
 
 export default function CommentCreate() {
   const queryClient = useQueryClient()
   const createCommentMutation = useMutation({
-    mutationFn: createComment,
+    mutationFn: commentCreate,
     onSuccess: async () => {
       await queryClient.invalidateQueries()
     },
@@ -27,8 +27,6 @@ export default function CommentCreate() {
   })
   const { errors } = useFormState({ control })
   const onSubmit: SubmitHandler<IComment> = (data) => {
-    console.log(data)
-    const createDate = new Date(Date.now())
     createCommentMutation.mutate({
       id: data.id,
       name: data.name,

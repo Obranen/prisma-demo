@@ -1,35 +1,26 @@
-import { Card, IconButton, MD3Colors, Text } from 'react-native-paper'
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen'
-import { IComment } from '../../../interface/comment'
+import { format } from 'date-fns'
 import { View } from 'react-native'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { deleteComment } from '../../../fetch/comment'
+import { Card, Text } from 'react-native-paper'
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen'
+import { useFirstLetterHook } from '../../../hooks/useFirstLetterHook'
+import { IComment } from '../../../interface/comment'
+import CommentDelete from './CommentDelete/CommentDelete'
+import CommentUpdate from './CommentUpdate/CommentUpdate'
 
 interface ICommentItem {
   comment: IComment
 }
 
 export default function CommentItem({ comment }: ICommentItem) {
-  const queryClient = useQueryClient()
-  
-  const deleteCommentMutation = useMutation({
-    mutationFn: deleteComment,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries()
-    }
-  })
+  const { capitalizeFirstLetter } = useFirstLetterHook()
 
-  console.log(comment.id);
-  
-
-  var dateBeautiful = new Date(String(comment.created_at)).toLocaleString()
-
-  const capitalizeFirstLetter = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1)
-  }
+  const commentDate = format(
+    new Date(String(comment.created_at)),
+    'dd-MM-yyyy HH-mm-ss'
+  )
 
   return (
     <Card style={{ width: wp('90%') }} className='mx-auto mb-[10px]'>
@@ -38,22 +29,10 @@ export default function CommentItem({ comment }: ICommentItem) {
           {capitalizeFirstLetter(comment.name)}
         </Text>
         <View className='flex-row'>
-          <IconButton
-            icon='application-edit'
-            iconColor={MD3Colors.error50}
-            size={20}
-            onPress={() => console.log('edit')}
-            className='p-0 m-0'
-          />
-          <IconButton
-            icon='delete'
-            iconColor={MD3Colors.error50}
-            size={20}
-            onPress={() => deleteCommentMutation.mutate(comment.id)}
-            className='p-0 m-0'
-          />
+          <CommentUpdate />
+          <CommentDelete commentId={comment.id} />
         </View>
-        <Text className='font-bold text-gray-400'>{dateBeautiful}</Text>
+        <Text className='font-bold text-gray-400'>{commentDate}</Text>
       </View>
       <Card.Content className=''>
         <Text>{capitalizeFirstLetter(comment.description)}</Text>
