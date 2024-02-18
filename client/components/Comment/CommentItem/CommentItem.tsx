@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-screen'
 import { useFirstLetterHook } from '../../../hooks/useFirstLetterHook'
 import { IComment } from '../../../interface/comment'
-import CommentClear from './CommentClear/CommentClear'
+import CommentClose from './CommentClose/CommentClose'
 import CommentDelete from './CommentDelete/CommentDelete'
 import CommentEdit from './CommentEdit/CommentEdit'
 
@@ -22,6 +22,10 @@ export default function CommentItem({ comment }: ICommentItem) {
     new Date(String(comment.created_at)),
     'dd-MM-yyyy HH-mm-ss'
   )
+  const commentDateUpdate = format(
+    new Date(String(comment.updated_at)),
+    'dd-MM-yyyy HH-mm-ss'
+  )
 
   return (
     <Card style={{ width: wp('90%') }} className='mx-auto mb-[10px]'>
@@ -31,10 +35,11 @@ export default function CommentItem({ comment }: ICommentItem) {
         </Text>
         <View className='flex-row'>
           <CommentEdit comment={comment} />
-          <CommentClear />
+          <CommentClose />
           <CommentDelete commentId={comment.id} />
         </View>
         <Text className='font-bold text-gray-400'>{commentDate}</Text>
+        {/* <Text className='block font-bold text-gray-400'>{commentDateUpdate}</Text> */}
       </View>
       <Card.Content className=''>
         <Text>{capitalizeFirstLetter(comment.description)}</Text>

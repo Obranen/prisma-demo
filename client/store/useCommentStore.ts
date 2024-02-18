@@ -1,39 +1,33 @@
 import { create } from 'zustand'
-// import {IProductState} from '../interface/product'
-
-// interface IUseFilterProductStore {
-//   productsFilter: IProductState[],
-//   addProductInFilter: (object: IProductState) => void,
-//   cleanProductFilter: () => void,
-// }
-
-// export const useFilterProductStore = create<IUseFilterProductStore>((set) => ({
-//   productsFilter: [],
-//   addProductInFilter: (object) => set(state => ({
-//     productsFilter: [
-//       ...state.productsFilter,
-//       object
-//     ],
-//   })),
-//   cleanProductFilter: () => set(state => ({
-//     productsFilter: []
-//   })),
-// }))
+import { IComment } from '../interface/comment'
 
 interface IUseCommentStore {
   isCommentEdit: boolean
-  commentEdit: () => void
-  commentClear: () => void
+  setCommentEdit: () => void
+  setCommentClose: () => void
+
+  dataCommentEdit: IComment
+  setDataCommentEdit: (data: IComment) => void
 }
 
 export const useCommentStore = create<IUseCommentStore>((set) => ({
   isCommentEdit: false,
-  commentEdit: () =>
+  setCommentEdit: () =>
     set({
       isCommentEdit: true,
     }),
-  commentClear: () =>
+  setCommentClose: () =>
     set({
       isCommentEdit: false,
+    }),
+
+  dataCommentEdit: {
+    id: '',
+    name: '',
+    description: '',
+  },
+  setDataCommentEdit: (data) =>
+    set({
+      dataCommentEdit: data,
     }),
 }))

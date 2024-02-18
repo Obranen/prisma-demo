@@ -35,7 +35,7 @@ export const commentDelete = async (id: string) => {
 
 export const commentUpdate = async (data: IComment) => {
   try {
-    await axios.put(`${baseUrl}/api/comment/update/${data.id}`, data)
+    await axios.put(`${baseUrl}/api/comment/update/`, data)
   } catch (e) {
     console.log(e)
   }

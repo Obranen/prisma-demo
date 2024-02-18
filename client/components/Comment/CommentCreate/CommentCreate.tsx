@@ -1,8 +1,3 @@
-import { Button, HelperText, Text, TextInput } from 'react-native-paper'
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   Controller,
@@ -10,12 +5,25 @@ import {
   useForm,
   useFormState,
 } from 'react-hook-form'
+import { Button, HelperText, Text, TextInput } from 'react-native-paper'
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen'
 import { commentCreate, commentUpdate } from '../../../fetch/comment'
 import { IComment } from '../../../interface/comment'
 import { useCommentStore } from '../../../store/useCommentStore'
+import { useEffect, useState } from 'react'
 
 export default function CommentCreate() {
   const isCommentEdit = useCommentStore((state) => state.isCommentEdit)
+  const setCommentClose = useCommentStore((state) => state.setCommentClose)
+  const dataCommentEdit = useCommentStore((state) => state.dataCommentEdit)
+  const [valueComment, setValueComment] = useState<IComment>({
+    id: '',
+    name: '',
+    description: '',
+  })
   const queryClient = useQueryClient()
 
   const commentCreateMutation = useMutation({
@@ -32,13 +40,21 @@ export default function CommentCreate() {
     },
   })
 
+  useEffect(() => {
+    if (isCommentEdit) {
+      setValueComment({ id: dataCommentEdit.id, name: dataCommentEdit.name, description: dataCommentEdit.description })
+    } else {
+      setValueComment({ id: '', name: '', description: '' })
+    }
+  }, [isCommentEdit])
+
   const { handleSubmit, control, resetField } = useForm<IComment>({
     defaultValues: { name: '', description: '' },
+    values: valueComment,
   })
   const { errors } = useFormState({ control })
   const createPress: SubmitHandler<IComment> = (data) => {
     commentCreateMutation.mutate({
-      id: data.id,
       name: data.name,
       description: data.description,
     })
@@ -54,6 +70,7 @@ export default function CommentCreate() {
       description: data.description,
     })
 
+    setCommentClose()
     resetField('name')
     resetField('description')
   }

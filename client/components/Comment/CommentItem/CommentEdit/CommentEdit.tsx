@@ -7,14 +7,22 @@ interface ICommentUpdate {
 }
 
 export default function CommentEdit({ comment }: ICommentUpdate) {
-  const commentEdit = useCommentStore((state) => state.commentEdit)
-  
+  const setCommentEdit = useCommentStore((state) => state.setCommentEdit)
+  const setDataCommentEdit = useCommentStore(
+    (state) => state.setDataCommentEdit
+  )
+
+  const editPress = () => {
+    setCommentEdit()
+    setDataCommentEdit(comment)
+  }
+
   return (
     <IconButton
       icon='application-edit'
       iconColor={MD3Colors.error50}
       size={20}
-      onPress={commentEdit}
+      onPress={editPress}
       className='p-0 m-0'
     />
   )
