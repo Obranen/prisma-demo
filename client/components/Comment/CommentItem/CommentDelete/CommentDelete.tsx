@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { commentDelete } from '../../../../fetch/comment'
+import { deleteCommentFetch } from '../../../../fetch/comment.fetch'
 import { IconButton, MD3Colors } from 'react-native-paper'
 
 interface ICommentDelete {
@@ -10,9 +10,9 @@ export default function CommentDelete({commentId}: ICommentDelete) {
   const queryClient = useQueryClient()
   
   const deleteCommentMutation = useMutation({
-    mutationFn: commentDelete,
+    mutationFn: deleteCommentFetch,
     onSuccess: async () => {
-      await queryClient.invalidateQueries()
+      await queryClient.invalidateQueries({queryKey: ['comment']})
     }
   })
   return (

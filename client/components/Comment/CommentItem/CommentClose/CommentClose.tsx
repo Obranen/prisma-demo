@@ -1,5 +1,5 @@
 import { IconButton, MD3Colors } from 'react-native-paper'
-import { useCommentStore } from '../../../../store/useCommentStore'
+import { useCommentStore } from '../../../../store/useComment.store'
 
 export default function CommentClose() {
   const setCommentClose = useCommentStore((state) => state.setCommentClose)

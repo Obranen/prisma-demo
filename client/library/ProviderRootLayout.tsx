@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
 
-export function Provider({ children }: { children: ReactNode }) {
+export function ProviderRootLayout({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <PaperProvider>{children}</PaperProvider>

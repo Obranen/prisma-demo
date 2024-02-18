@@ -10,9 +10,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
-import { commentCreate, commentUpdate } from '../../../fetch/comment'
-import { IComment } from '../../../interface/comment'
-import { useCommentStore } from '../../../store/useCommentStore'
+import { createCommentFetch, updateCommentFetch } from '../../../fetch/comment.fetch'
+import { IComment } from '../../../interface/comment.interface'
+import { useCommentStore } from '../../../store/useComment.store'
 import { useEffect, useState } from 'react'
 
 export default function CommentCreate() {
@@ -27,16 +27,16 @@ export default function CommentCreate() {
   const queryClient = useQueryClient()
 
   const commentCreateMutation = useMutation({
-    mutationFn: commentCreate,
+    mutationFn: createCommentFetch,
     onSuccess: async () => {
-      await queryClient.invalidateQueries()
+      await queryClient.invalidateQueries({queryKey: ['comment']})
     },
   })
 
   const commentUpdateMutation = useMutation({
-    mutationFn: commentUpdate,
+    mutationFn: updateCommentFetch,
     onSuccess: async () => {
-      await queryClient.invalidateQueries()
+      await queryClient.invalidateQueries({queryKey: ['comment']})
     },
   })
 

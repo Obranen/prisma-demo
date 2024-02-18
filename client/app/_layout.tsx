@@ -1,7 +1,7 @@
 import { SafeAreaView, Text, View } from 'react-native'
 import DrawerNavigation from '../components/DrawerNavigation/DrawerNavigation'
-import { useFontsHook } from '../hooks/useFontsHook'
-import { Provider } from '../lib/Provider'
+import { useFontsHook } from '../hook/useFonts.hook'
+import { ProviderRootLayout } from '../library/ProviderRootLayout'
 
 export default function RootLayout() {
   let { fontsLoaded, fontError, onLayoutRootView } = useFontsHook()
@@ -14,10 +14,10 @@ export default function RootLayout() {
     )
   }
   return (
-    <Provider>
+    <ProviderRootLayout>
       <SafeAreaView className='flex-1' onLayout={onLayoutRootView}>
         <DrawerNavigation />
       </SafeAreaView>
-    </Provider>
+    </ProviderRootLayout>
   )
 }

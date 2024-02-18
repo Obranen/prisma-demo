@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import { FlatList, View } from 'react-native'
 import { Text } from 'react-native-paper'
-import { commentsGet } from '../../fetch/comment'
+import { getCommentsFetch } from '../../fetch/comment.fetch'
 import CommentCreate from './CommentCreate/CommentCreate'
 import CommentItem from './CommentItem/CommentItem'
 
 export default function Comment() {
   const comments = useQuery({
     queryKey: ['comment'],
-    queryFn: () => commentsGet(),
+    queryFn: () => getCommentsFetch(),
   })
 
   if (comments.isLoading) {

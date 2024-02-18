@@ -1,5 +1,5 @@
 import Router from 'express'
-import commentRouter from './commentRouter.js'
+import commentRouter from './comment.route.js'
 
 const router = Router()
 

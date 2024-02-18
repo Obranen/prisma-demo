@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { IComment } from '../interface/comment'
+import { IComment } from '../interface/comment.interface'
 import { Platform } from 'react-native'
 
 const baseUrl =
@@ -7,7 +7,7 @@ const baseUrl =
     ? process.env.EXPO_PUBLIC_FETCH_MOBILE_URL
     : process.env.EXPO_PUBLIC_FETCH_WEB_URL
 
-export const commentsGet = async () => {
+export const getCommentsFetch = async () => {
   try {
     const response = await axios.get<IComment[]>(`${baseUrl}/api/comment`)
     return response.data
@@ -16,7 +16,7 @@ export const commentsGet = async () => {
   }
 }
 
-export const commentCreate = async (data: IComment) => {
+export const createCommentFetch = async (data: IComment) => {
   try {
     await axios.post(`${baseUrl}/api/comment/create`, data)
   } catch (e) {
@@ -24,7 +24,7 @@ export const commentCreate = async (data: IComment) => {
   }
 }
 
-export const commentDelete = async (id: string) => {
+export const deleteCommentFetch = async (id: string) => {
   try {
     await axios.delete(`${baseUrl}/api/comment/${id}`)
     return null
@@ -33,7 +33,7 @@ export const commentDelete = async (id: string) => {
   }
 }
 
-export const commentUpdate = async (data: IComment) => {
+export const updateCommentFetch = async (data: IComment) => {
   try {
     await axios.put(`${baseUrl}/api/comment/update/`, data)
   } catch (e) {

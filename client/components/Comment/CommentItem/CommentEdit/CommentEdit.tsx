@@ -1,6 +1,6 @@
 import { IconButton, MD3Colors } from 'react-native-paper'
-import { IComment } from '../../../../interface/comment'
-import { useCommentStore } from '../../../../store/useCommentStore'
+import { IComment } from '../../../../interface/comment.interface'
+import { useCommentStore } from '../../../../store/useComment.store'
 
 interface ICommentUpdate {
   comment: IComment

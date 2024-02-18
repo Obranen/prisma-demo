@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { IComment } from '../interface/comment'
+import { IComment } from '../interface/comment.interface'
 
 interface IUseCommentStore {
   isCommentEdit: boolean

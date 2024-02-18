@@ -5,8 +5,8 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
-import { useFirstLetterHook } from '../../../hooks/useFirstLetterHook'
-import { IComment } from '../../../interface/comment'
+import { useFirstLetterHook } from '../../../hook/useFirstLetter.hook'
+import { IComment } from '../../../interface/comment.interface'
 import CommentClose from './CommentClose/CommentClose'
 import CommentDelete from './CommentDelete/CommentDelete'
 import CommentEdit from './CommentEdit/CommentEdit'
