@@ -3,7 +3,7 @@ import { commentDelete } from '../../../../fetch/comment'
 import { IconButton, MD3Colors } from 'react-native-paper'
 
 interface ICommentDelete {
-  commentId: string
+  commentId: string | undefined
 }
 
 export default function CommentDelete({commentId}: ICommentDelete) {
@@ -20,7 +20,7 @@ export default function CommentDelete({commentId}: ICommentDelete) {
             icon='delete'
             iconColor={MD3Colors.error50}
             size={20}
-            onPress={() => deleteCommentMutation.mutate(commentId)}
+            onPress={() => deleteCommentMutation.mutate(commentId!)}
             className='p-0 m-0'
           />
   )

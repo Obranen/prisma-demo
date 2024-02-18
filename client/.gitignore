@@ -1,8 +1,10 @@
 # Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
+# Keep environment variables out of version control
+.env
+
 # dependencies
 node_modules/
-.env
 
 # Expo
 .expo/
