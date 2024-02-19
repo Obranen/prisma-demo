@@ -18,32 +18,38 @@ interface ICommentItem {
 export default function CommentItem({ comment }: ICommentItem) {
   const { capitalizeFirstLetter } = useFirstLetterHook()
 
-  const commentDate = format(
+  const commentCreateDate = format(
     new Date(String(comment.created_at)),
     'dd-MM-yyyy HH-mm-ss'
   )
-  const commentDateUpdate = format(
+  const commentUpdateDate = format(
     new Date(String(comment.updated_at)),
     'dd-MM-yyyy HH-mm-ss'
   )
 
   return (
-    <Card style={{ width: wp('90%') }} className='mx-auto mb-[10px]'>
-      <View className='flex-row justify-between p-[8px]'>
+    <Card style={{ width: wp('90%') }} className='mx-auto mb-[10px] p-[6px]'>
+      <View className='flex-row justify-between mx-[4px]'>
         <Text className='font-bold' style={{ fontSize: hp(2) }}>
           {capitalizeFirstLetter(comment.name)}
         </Text>
-        <View className='flex-row'>
+        <Text className='font-bold text-gray-400'>
+          Создано: {commentCreateDate}
+        </Text>
+      </View>
+      <Card.Content className='mt-[10px] mb-[6px]'>
+        <Text>{'\t' + capitalizeFirstLetter(comment.description)}</Text>
+      </Card.Content>
+      <View className='flex-row items-center justify-between'>
+        <View className='flex-row ml-[-3px]'>
           <CommentEdit comment={comment} />
           <CommentClose />
           <CommentDelete commentId={comment.id} />
         </View>
-        <Text className='font-bold text-gray-400'>{commentDate}</Text>
-        {/* <Text className='block font-bold text-gray-400'>{commentDateUpdate}</Text> */}
+        <Text className='font-bold text-gray-400 mr-[3px]'>
+          Обновлено: {commentUpdateDate}
+        </Text>
       </View>
-      <Card.Content className=''>
-        <Text>{capitalizeFirstLetter(comment.description)}</Text>
-      </Card.Content>
     </Card>
   )
 }
