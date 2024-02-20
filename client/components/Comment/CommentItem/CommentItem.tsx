@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { View } from 'react-native'
-import { Card, Text } from 'react-native-paper'
+import { Card, Divider, Text } from 'react-native-paper'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -40,6 +40,7 @@ export default function CommentItem({ comment }: ICommentItem) {
       <Card.Content className='mt-[10px] mb-[6px]'>
         <Text>{'\t' + capitalizeFirstLetter(comment.description)}</Text>
       </Card.Content>
+      <Divider />
       <View className='flex-row items-center justify-between'>
         <View className='flex-row ml-[-3px]'>
           <CommentEdit comment={comment} />

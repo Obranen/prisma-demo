@@ -151,7 +151,7 @@ export default function CommentCreate() {
           style={{ width: wp('60%') }}
           className='mx-auto mt-[10px]'
         >
-          <Text style={{ fontSize: hp(2) }} className='font-bold text-white'>
+          <Text style={{ fontSize: hp(2) }} className='font-bold text-yellow-300 dark:text-red-500'>
             Добавить
           </Text>
         </Button>
@@ -162,6 +162,7 @@ export default function CommentCreate() {
       >
         Список комментариев:
       </Text>
+      
     </>
   )
 }

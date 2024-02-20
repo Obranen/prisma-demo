@@ -2,7 +2,7 @@ import {
   Entypo,
   FontAwesome,
   MaterialCommunityIcons,
-  MaterialIcons
+  MaterialIcons,
 } from '@expo/vector-icons'
 import { Drawer } from 'expo-router/drawer'
 import { useColorScheme } from 'nativewind'
@@ -51,7 +51,13 @@ export default function DrawerNavigation() {
           drawerLabel: 'Carousel',
           title: 'Carousel',
           drawerIcon: ({ size, color }) => {
-            return <MaterialCommunityIcons name='view-carousel-outline' size={size} color={color} />
+            return (
+              <MaterialCommunityIcons
+                name='view-carousel-outline'
+                size={size}
+                color={color}
+              />
+            )
           },
         }}
       />

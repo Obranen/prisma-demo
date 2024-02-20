@@ -1,6 +1,6 @@
 import { SafeAreaView, Text, View } from 'react-native'
-import DrawerNavigation from '../components/DrawerNavigation/DrawerNavigation'
 import { useFontsHook } from '../hook/useFonts.hook'
+import DrawerNavigation from '../components/DrawerNavigation/DrawerNavigation'
 import { ProviderRootLayout } from '../library/ProviderRootLayout'
 
 export default function RootLayout() {

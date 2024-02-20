@@ -6,7 +6,7 @@ export default function ToggleTheme() {
   const { colorScheme, toggleColorScheme } = useColorScheme()
 
   return (
-    <View className='flex-1 justify-center items-center'>
+    <View className='items-center justify-center flex-1'>
       <StatusBar
         backgroundColor={colorScheme === 'dark' ? '#000' : '#fff'}
         style={colorScheme === 'dark' ? 'light' : 'dark'}
