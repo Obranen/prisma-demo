@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
-import { useColorScheme } from 'nativewind'
-import { Switch, View } from 'react-native'
+import { View } from 'react-native'
+import { ToggleButton } from 'react-native-paper'
+import { useThemeHook } from '../../../../hook/useTheme.hook'
 
 export default function ToggleTheme() {
-  const { colorScheme, toggleColorScheme } = useColorScheme()
+  const { toggleColorScheme, colorScheme } = useThemeHook()
 
   return (
     <View className='items-center justify-center flex-1'>
@@ -11,11 +12,13 @@ export default function ToggleTheme() {
         backgroundColor={colorScheme === 'dark' ? '#000' : '#fff'}
         style={colorScheme === 'dark' ? 'light' : 'dark'}
       />
-      <Switch
-        value={colorScheme === 'dark'}
-        onChange={toggleColorScheme}
-        trackColor={{ false: '#818181', true: '#818181' }}
-        thumbColor={colorScheme === 'dark' ? '#fff' : '#000'}
+      <ToggleButton
+        icon={
+          colorScheme === 'dark'
+            ? 'moon-waxing-crescent'
+            : 'white-balance-sunny'
+        }
+        onPress={toggleColorScheme}
       />
     </View>
   )

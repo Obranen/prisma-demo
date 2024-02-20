@@ -1,19 +1,28 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useEffect, useState } from 'react'
 import {
   Controller,
   SubmitHandler,
   useForm,
   useFormState,
 } from 'react-hook-form'
-import { Button, HelperText, Text, TextInput } from 'react-native-paper'
+import {
+  Button,
+  HelperText,
+  Text,
+  TextInput,
+  useTheme,
+} from 'react-native-paper'
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen'
-import { createCommentFetch, updateCommentFetch } from '../../../fetch/comment.fetch'
+import {
+  createCommentFetch,
+  updateCommentFetch,
+} from '../../../fetch/comment.fetch'
 import { IComment } from '../../../interface/comment.interface'
 import { useCommentStore } from '../../../store/useComment.store'
-import { useEffect, useState } from 'react'
 
 export default function CommentCreate() {
   const isCommentEdit = useCommentStore((state) => state.isCommentEdit)
@@ -29,20 +38,24 @@ export default function CommentCreate() {
   const commentCreateMutation = useMutation({
     mutationFn: createCommentFetch,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({queryKey: ['comment']})
+      await queryClient.invalidateQueries({ queryKey: ['comment'] })
     },
   })
 
   const commentUpdateMutation = useMutation({
     mutationFn: updateCommentFetch,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({queryKey: ['comment']})
+      await queryClient.invalidateQueries({ queryKey: ['comment'] })
     },
   })
 
   useEffect(() => {
     if (isCommentEdit) {
-      setValueComment({ id: dataCommentEdit.id, name: dataCommentEdit.name, description: dataCommentEdit.description })
+      setValueComment({
+        id: dataCommentEdit.id,
+        name: dataCommentEdit.name,
+        description: dataCommentEdit.description,
+      })
     } else {
       setValueComment({ id: '', name: '', description: '' })
     }
@@ -79,7 +92,7 @@ export default function CommentCreate() {
     <>
       <Text
         style={{ fontSize: hp(2.5) }}
-        className='text-center mt-[20px] mb-[6px] font-medium text-fuchsia-600'
+        className='text-center mt-[20px] mb-[6px] font-medium'
       >
         Создать комментарий
       </Text>
@@ -139,7 +152,7 @@ export default function CommentCreate() {
           style={{ width: wp('60%') }}
           className='mx-auto mt-[10px]'
         >
-          <Text style={{ fontSize: hp(2) }} className='font-bold text-white'>
+          <Text style={{ fontSize: hp(2) }} className='font-bold'>
             Сохранить
           </Text>
         </Button>
@@ -151,18 +164,17 @@ export default function CommentCreate() {
           style={{ width: wp('60%') }}
           className='mx-auto mt-[10px]'
         >
-          <Text style={{ fontSize: hp(2) }} className='font-bold text-yellow-300 dark:text-red-500'>
+          <Text style={{ fontSize: hp(2) }} className='font-bold'>
             Добавить
           </Text>
         </Button>
       )}
       <Text
         style={{ fontSize: hp(2.2) }}
-        className='text-center mt-[20px] mb-[6px] font-medium text-fuchsia-600'
+        className='text-center mt-[20px] mb-[6px] font-medium'
       >
         Список комментариев:
       </Text>
-      
     </>
   )
 }

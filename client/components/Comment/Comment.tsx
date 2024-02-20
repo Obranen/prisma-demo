@@ -29,7 +29,7 @@ export default function Comment() {
   }
 
   return (
-    <View className='flex-1'>
+    <View className='flex-1 bg-white dark:bg-slate-800'>
       <ToggleTheme />
       <CommentCreate />
       {comments.data?.length === 0 ? (
